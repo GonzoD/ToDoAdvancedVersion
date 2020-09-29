@@ -44,7 +44,7 @@ div.midlle h1 {
 }
 
 div.midlle h1:hover {
-  transition-duration: 0.5s;
+  transition-duration: 1s;
   font-size: 700%;
   background-position: 0 0;
 }

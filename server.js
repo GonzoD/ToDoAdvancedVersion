@@ -1,6 +1,6 @@
 const express = require("express");
 const { Sequelize } = require("sequelize");
-const path = require('path')
+const path = require("path");
 const PORT = 3000;
 
 const db = new Sequelize("To_Do_List", "postgres", "123", {
@@ -10,21 +10,23 @@ const db = new Sequelize("To_Do_List", "postgres", "123", {
 
 const app = express();
 
+app.use(express.static("public"));
+
 app.get("/", (req, res) => {
-    res.sendFile(path.join('./pages/main_page.html'));
+  res.sendFile(path.join(__dirname, "pages", "startPage.html"));
 });
 
 async function start() {
-    try {
-      db.authenticate()
-        .then(() => console.log("Database conected..."))
-        .catch((err) => console.log("Err: " + err));
-      app.listen(PORT, () => {
-        console.log("Server has been started...");
-      });
-    } catch (error) {
-      console.error(error);
-    }
+  try {
+    db.authenticate()
+      .then(() => console.log("Database conected..."))
+      .catch((err) => console.log("Err: " + err));
+    app.listen(PORT, () => {
+      console.log("Server has been started...");
+    });
+  } catch (error) {
+    console.error(error);
   }
-  
-  start();
+}
+
+start();
